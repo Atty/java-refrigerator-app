@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <div>
+        <h2>Список продуктов</h2>
+        <div>
+            {{#products}}
+            <a href="/delete/product">{{title}}</a>
+            {{/products}}
+        </div>
+
+        <form method="post">
+            <input type="text" name="title" placeholder="Введите продукт">
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</body>
+</html>
