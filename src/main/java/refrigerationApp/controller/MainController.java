@@ -16,26 +16,22 @@ import java.util.Map;
 @Controller
 public class MainController
 {
-	
+
 	@Autowired
 	private RecipeRepo recipeRepo;
-	
+
 	@GetMapping
-	public String main(Map<String, Object> model)
-	{
+	public String main(Map<String, Object> model) {
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
+
 		model.put("some", recipies);
-		
+
 		return "main";
 	}
-	
+
 	@PostMapping("addProduct")
-	public String addProduct(@RequestParam String title,
-	                         Map<String, Object> model)
-	{
-		if (!title.isEmpty() && title.length() != 0)
-		{
+	public String addProduct(@RequestParam String title, Map<String, Object> model) {
+		if (!title.isEmpty() && title.length() != 0) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
@@ -50,23 +46,23 @@ public class MainController
 	                         Map<String, Object> model)
 	{
 		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
-		
+
 		recipeRepo.save(recipe);
-		
+
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
+
 		model.put("recipies", recipies);
-		
+
 		return "main";
 	}
-	
+
 	@PostMapping("filter")
 	public String filter(@RequestParam String filter, Map<String, Object> model)
 	{
 		List<Recipe> recipies = recipeRepo.findByIngridientsIgnoreCaseContaining(filter);
-		
+
 		model.put("recipies", recipies);
-		
+
 		return "main";
 	}
 }
