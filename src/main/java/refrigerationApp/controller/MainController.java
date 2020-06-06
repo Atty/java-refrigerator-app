@@ -20,19 +20,15 @@ public class MainController
 	@Autowired
 	private RecipeRepo recipeRepo;
 	
+	
 	@GetMapping
 	public String main(Map<String, Object> model)
 	{
-		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
-		model.put("some", recipies);
-		
 		return "main";
 	}
 	
 	@PostMapping("addProduct")
-	public String addProduct(@RequestParam String title,
-	                         Map<String, Object> model)
+	public String addProduct(@RequestParam String title, Map<String, Object> model)
 	{
 		if (!title.isEmpty() && title.length() != 0)
 		{
@@ -45,9 +41,9 @@ public class MainController
 	
 	@PostMapping("addRecipe")
 	public String addRecipe(@RequestParam String nameRecipe,
-	                         @RequestParam String ingridients,
-	                         @RequestParam String howToCook,
-	                         Map<String, Object> model)
+	                        @RequestParam String ingridients,
+	                        @RequestParam String howToCook,
+	                        Map<String, Object> model)
 	{
 		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
 		

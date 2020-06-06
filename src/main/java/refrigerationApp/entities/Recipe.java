@@ -1,20 +1,23 @@
 package refrigerationApp.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Recipe
 {
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(name = "name_recipe")
 	private String nameRecipe;
+	
+	@Column(name = "ingridients")
 	private String ingridients;
+	
+	@Column(name = "how_to_cook")
 	private String howToCook;
 	
 	public Recipe(String nameRecipe, String ingridients, String howToCook)
