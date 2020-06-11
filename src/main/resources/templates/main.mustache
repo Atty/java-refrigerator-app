@@ -3,42 +3,62 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/static/main.css">
 </head>
-<embed>
-<div>
-    <h2>Список продуктов</h2>
-    <div>
-        {{#products}}
-            <span>{{title}}</span>
-        {{/products}}
-    </div>
+<body>
+    <main class="main container">
+        <h1 class="main__title">Генерирование рецептов из ваших продуктов</h1>
 
-    <form method="post" , action="addProduct">
-        <input type="text" name="title" placeholder="Введите продукт">
-        <button type="submit">Добавить</button>
-    </form>
-</div>
-<!------------------------------------------------------------------------------------------------------->
-<div>
-    <form method="post" , action="addRecipe">
-        <input type="text" , name="nameRecipe" , placeholder="Название рецепта"/>
-        <input type="text" , name="ingridients" , placeholder="Ингридиенты"/>
-        <input type="text" , name="howToCook" , placeholder="Описание приготовления"/>
-        <button type="submit">Занести в базу</button>
-    </form>
-    <form method="post" , action="filter">
-        <input type="text" , name="filter" , placeholder="Что у вас есть?">
-        <button type="submit">Найти рецепты</button>
-    </form>
-</div>
-{{#recipies}}
-    <div>
-        <b>{{id}}</b>
-        <span>{{nameRecipe}}</span>
-        <span>{{ingridients}}</span>
-        <span>{{howToCook}}</span>
-    </div>
-{{/recipies}}
-<!----------------------------------------------------------------------------------------------------------->
+        <form class="form" method="post" action="addProduct" class="form">
+            <div class="form__inputs">
+                <input class="form__input" type="text" name="title" placeholder="Введите продукт">
+            </div>
+
+            <button class="btn" type="submit">Добавить</button>
+        </form>
+
+        <section class="products">
+            <h3 class="section-title">Список продуктов:</h3>
+
+            <ul class="products__list js-list">
+                {{#products}}
+                    <li class="products__list-item">{{title}}</li>
+                {{/products}}
+            </ul>
+        </section>
+
+
+        <form class="form" method="post" action="addRecipe">
+            <div class="form__inputs">
+                <input class="form__input" type="text" name="nameRecipe" placeholder="Название рецепта"/>
+                <input class="form__input" type="text" name="ingridients" placeholder="Ингридиенты"/>
+                <input class="form__input" type="text" name="howToCook" placeholder="Описание приготовления"/>
+            </div>
+
+            <button class="btn" type="submit">Занести в базу</button>
+        </form>
+
+        <form class="form" method="post" action="filter">
+            <div class="form__inputs">
+                <input class="form__input" type="text" name="filter" placeholder="Что у вас есть?">
+            </div>
+            <button class="btn" type="submit">Найти рецепты</button>
+        </form>
+
+        <section class="recipies">
+            <h3 class="section-title">Список рецептов:</h3>
+            <div class="recipies__list js-list">
+            {{#recipies}}
+                <div class="recipies__list-item">
+                    <p><b>{{id}}. {{nameRecipe}}</b></p>
+                    <p><b>Ингридиенты:</b> {{ingridients}}</p>
+                    <p><b>Как готовить:</b> {{howToCook}}</p>
+                </div>
+            {{/recipies}}
+            </div>
+        </section>
+
+    </main>
+    <script src="/static/main.js"></script>
 </body>
 </html>
