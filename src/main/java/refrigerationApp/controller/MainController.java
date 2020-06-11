@@ -20,11 +20,7 @@ public class MainController
 	@Autowired
 	private RecipeRepo recipeRepo;
 
-<<<<<<< HEAD
   	@GetMapping
-=======
-    @GetMapping
->>>>>>> master
 	public String main(Map<String, Object> model)
 	{
 		return "main";
