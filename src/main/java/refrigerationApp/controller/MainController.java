@@ -16,22 +16,19 @@ import java.util.Map;
 @Controller
 public class MainController
 {
-	
+
 	@Autowired
 	private RecipeRepo recipeRepo;
-	
-	
+
 	@GetMapping
 	public String main(Map<String, Object> model)
 	{
 		return "main";
 	}
-	
+
 	@PostMapping("addProduct")
-	public String addProduct(@RequestParam String title, Map<String, Object> model)
-	{
-		if (!title.isEmpty() && title.length() != 0)
-		{
+	public String addProduct(@RequestParam String title, Map<String, Object> model) {
+		if (!title.isEmpty() && title.length() != 0) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
