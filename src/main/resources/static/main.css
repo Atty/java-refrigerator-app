@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: #444;
+    background-color: #e7eef4;
+}
+
+.container {
+    width: 1000px;
+    margin: 100px auto;
+    padding: 0 15px;
+}
+
+.main__title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form__input {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    width: 200px;
+    margin-right: 20px;
+    padding: 5px;
+    outline: none;
+}
+
+.btn {
+    font-size: 16px;
+    color: #fff;
+    background-color: #67e259;
+    border: 2px solid #75c96c;
+    padding: 7px 25px;
+    cursor: pointer;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.recipies__list,
+.products__list {
+    margin-bottom: 100px;
+}
+
+.recipies__list-item {
+    margin-bottom: 15px;
+}
+
+.empty-text {
+    font-size: 16px;
+}

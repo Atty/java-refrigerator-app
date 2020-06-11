@@ -19,8 +19,8 @@ public class MainController
 	
 	@Autowired
 	private RecipeRepo recipeRepo;
-	
-	@GetMapping
+
+  	@GetMapping
 	public String main(Map<String, Object> model)
 	{
 		return "main";
