@@ -5,40 +5,40 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <embed>
-<div>
-    <h2>Список продуктов</h2>
     <div>
-        {{#products}}
+        <h2>Список продуктов</h2>
+        <div>
+            {{#products}}
             <span>{{title}}</span>
-        {{/products}}
-    </div>
+            {{/products}}
+        </div>
 
-    <form method="post" , action="addProduct">
-        <input type="text" name="title" placeholder="Введите продукт">
-        <button type="submit">Добавить</button>
-    </form>
-</div>
-<!------------------------------------------------------------------------------------------------------->
-<div>
-    <form method="post" , action="addRecipe">
-        <input type="text" , name="nameRecipe" , placeholder="Название рецепта"/>
-        <input type="text" , name="ingridients" , placeholder="Ингридиенты"/>
-        <input type="text" , name="howToCook" , placeholder="Описание приготовления"/>
-        <button type="submit">Занести в базу</button>
-    </form>
-    <form method="post" , action="filter">
-        <input type="text" , name="filter" , placeholder="Что у вас есть?">
-        <button type="submit">Найти рецепты</button>
-    </form>
-</div>
-{{#recipies}}
-    <div>
-        <b>{{id}}</b>
-        <span>{{nameRecipe}}</span>
-        <span>{{ingridients}}</span>
-        <span>{{howToCook}}</span>
+        <form method="post", action="addProduct">
+            <input type="text" name="title" placeholder="Введите продукт">
+            <button type="submit">Добавить</button>
+        </form>
     </div>
-{{/recipies}}
+<!------------------------------------------------------------------------------------------------------->
+    <div>
+        <form method="post", action="addRecipe">
+            <input type="text", name="nameRecipe", placeholder="Название рецепта"/>
+            <input type="text", name="ingridients", placeholder="Ингридиенты"/>
+            <input type="text", name="howToCook", placeholder="Описание приготовления"/>
+            <button type="submit">Занести в базу</button>
+        </form>
+        <form method="post", action="filter">
+            <input type="text", name="filter", placeholder="Что у вас есть?">
+            <button type="submit">Найти рецепты</button>
+        </form>
+    </div>
+    {{#recipies}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{nameRecipe}}</span>
+            <span>{{ingridients}}</span>
+            <span>{{howToCook}}</span>
+        </div>
+    {{/recipies}}
 <!----------------------------------------------------------------------------------------------------------->
 </body>
 </html>

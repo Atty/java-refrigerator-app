@@ -21,8 +21,11 @@ public class MainController
 	private RecipeRepo recipeRepo;
 
 	@GetMapping
-	public String main(Map<String, Object> model)
-	{
+	public String main(Map<String, Object> model) {
+		Iterable<Recipe> recipies = recipeRepo.findAll();
+
+		model.put("some", recipies);
+
 		return "main";
 	}
 
@@ -38,28 +41,28 @@ public class MainController
 	
 	@PostMapping("addRecipe")
 	public String addRecipe(@RequestParam String nameRecipe,
-	                        @RequestParam String ingridients,
-	                        @RequestParam String howToCook,
-	                        Map<String, Object> model)
+	                         @RequestParam String ingridients,
+	                         @RequestParam String howToCook,
+	                         Map<String, Object> model)
 	{
 		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
-		
+
 		recipeRepo.save(recipe);
-		
+
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
+
 		model.put("recipies", recipies);
-		
+
 		return "main";
 	}
-	
+
 	@PostMapping("filter")
 	public String filter(@RequestParam String filter, Map<String, Object> model)
 	{
 		List<Recipe> recipies = recipeRepo.findByIngridientsIgnoreCaseContaining(filter);
-		
+
 		model.put("recipies", recipies);
-		
+
 		return "main";
 	}
 }
