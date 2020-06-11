@@ -23,10 +23,6 @@ public class MainController
 	@GetMapping
 	public String main(Map<String, Object> model)
 	{
-		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
-		model.put("some", recipies);
-		
 		return "main";
 	}
 	
