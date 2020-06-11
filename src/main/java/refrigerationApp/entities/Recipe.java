@@ -22,14 +22,12 @@ public class Recipe
 	
 	public Recipe(String nameRecipe, String ingridients, String howToCook)
 	{
-		this.nameRecipe = nameRecipe;
+		this.nameRecipe  = nameRecipe;
 		this.ingridients = ingridients;
-		this.howToCook = howToCook;
+		this.howToCook   = howToCook;
 	}
 	
-	public Recipe()
-	{
-	}
+	public Recipe() {}
 	
 	public Integer getId()
 	{

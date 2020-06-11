@@ -4,9 +4,7 @@ public class Product
 {
 	private String title;
 	
-	public Product()
-	{
-	}
+	public Product() {}
 	
 	public Product(String title)
 	{
