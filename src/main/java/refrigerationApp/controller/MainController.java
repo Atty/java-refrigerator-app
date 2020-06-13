@@ -3,19 +3,20 @@ package refrigerationApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import refrigerationApp.domain.Product;
+import refrigerationApp.entities.Product;
 import refrigerationApp.entities.Recipe;
 import refrigerationApp.repos.RecipeRepo;
 import refrigerationApp.store.ProductStore;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MainController
-{
+public class MainController {
 	
 	@Autowired
 	private RecipeRepo recipeRepo;
@@ -23,19 +24,41 @@ public class MainController
 	@GetMapping
 	public String main(Map<String, Object> model)
 	{
+		Iterable<Recipe> recipies = recipeRepo.findAll();
+
+		model.put("recipies", recipies);
+
+		model.put("products", ProductStore.getProducts());
+
 		return "main";
 	}
+
 	
 	@PostMapping("addProduct")
 	public String addProduct(@RequestParam String title, Map<String, Object> model)
 	{
-		if (!title.isEmpty() && title.length() != 0)
-		{
+		if (!title.isEmpty() && title.length() != 0) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
 		}
-		return "main";
+		return "redirect:/";
+	}
+
+	@GetMapping(value = {"/deleteProduct/{id}"})
+	public String deleteProductById(@PathVariable int id,
+								 Map<String, Object> model)
+	{
+		Iterator<Product> productsList = ProductStore.getProducts().iterator();
+
+		while(productsList.hasNext()){
+			if(productsList.next().getId() == id){
+				productsList.remove();
+				break;
+			}
+		}
+
+		return "redirect:/";
 	}
 	
 	@PostMapping("addRecipe")
@@ -47,12 +70,12 @@ public class MainController
 		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
 		
 		recipeRepo.save(recipe);
-		
+
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-		
+
 		model.put("recipies", recipies);
-		
-		return "main";
+
+		return "redirect:/";
 	}
 	
 	@PostMapping("filter")
@@ -62,6 +85,6 @@ public class MainController
 		
 		model.put("recipies", recipies);
 		
-		return "main";
+		return "redirect:/";
 	}
 }
