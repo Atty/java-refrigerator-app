@@ -1,6 +1,6 @@
 package refrigerationApp.store;
 
-import refrigerationApp.domain.Product;
+import refrigerationApp.entities.Product;
 
 import java.util.ArrayList;
 
