@@ -1,22 +1,22 @@
 package refrigerationApp.entities;
 
 public class Product {
-    private String title;
+    private String productTitle;
 
-    private int id;
+    private int productId;
     private static int counter = 0;
 
     public Product() {
     }
 
     public Product(String title) {
-        this.id = counter++;
-        this.title = title;
+        this.productId = counter++;
+        this.productTitle = title;
     }
 
-    public String getTitle() {
-        return title;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public int getId(){ return id; }
+    public int getProductId(){ return productId; }
 }

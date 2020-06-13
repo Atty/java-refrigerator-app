@@ -45,14 +45,14 @@ public class MainController {
 		return "redirect:/";
 	}
 
-	@GetMapping(value = {"/deleteProduct/{id}"})
-	public String deleteProductById(@PathVariable int id,
+	@GetMapping(value = {"/deleteProduct/{productId}"})
+	public String deleteProductById(@PathVariable int productId,
 								 Map<String, Object> model)
 	{
 		Iterator<Product> productsList = ProductStore.getProducts().iterator();
 
 		while(productsList.hasNext()){
-			if(productsList.next().getId() == id){
+			if(productsList.next().getProductId() == productId){
 				productsList.remove();
 				break;
 			}
@@ -85,6 +85,6 @@ public class MainController {
 		
 		model.put("recipies", recipies);
 		
-		return "redirect:/";
+		return "main";
 	}
 }
