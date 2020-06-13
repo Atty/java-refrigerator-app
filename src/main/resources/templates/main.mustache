@@ -3,7 +3,7 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
     <main class="main container">
@@ -22,7 +22,7 @@
 
             <ul class="products__list js-list">
                 {{#products}}
-                    <li class="products__list-item">{{title}}</li>
+                    <li class="products__list-item"><a href="/deleteProduct/{{productId}}">{{productTitle}}</a></li>
                 {{/products}}
             </ul>
         </section>
@@ -59,6 +59,6 @@
         </section>
 
     </main>
-    <script src="/static/main.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
