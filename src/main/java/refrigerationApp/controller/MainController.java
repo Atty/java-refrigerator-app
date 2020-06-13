@@ -22,21 +22,19 @@ public class MainController {
 	private RecipeRepo recipeRepo;
 	
 	@GetMapping
-	public String main(Map<String, Object> model)
-	{
+	public String main(Map<String, Object> model) {
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-
+		
 		model.put("recipies", recipies);
-
+		
 		model.put("products", ProductStore.getProducts());
-
+		
 		return "main";
 	}
-
+	
 	
 	@PostMapping("addProduct")
-	public String addProduct(@RequestParam String title, Map<String, Object> model)
-	{
+	public String addProduct(@RequestParam String title, Map<String, Object> model) {
 		if (!title.isEmpty() && title.length() != 0) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
@@ -44,20 +42,18 @@ public class MainController {
 		}
 		return "redirect:/";
 	}
-
+	
 	@GetMapping(value = {"/deleteProduct/{productId}"})
-	public String deleteProductById(@PathVariable int productId,
-								 Map<String, Object> model)
-	{
+	public String deleteProductById(@PathVariable int productId, Map<String, Object> model) {
 		Iterator<Product> productsList = ProductStore.getProducts().iterator();
-
-		while(productsList.hasNext()){
-			if(productsList.next().getProductId() == productId){
+		
+		while (productsList.hasNext()) {
+			if (productsList.next().getProductId() == productId) {
 				productsList.remove();
 				break;
 			}
 		}
-
+		
 		return "redirect:/";
 	}
 	
@@ -65,22 +61,20 @@ public class MainController {
 	public String addRecipe(@RequestParam String nameRecipe,
 	                        @RequestParam String ingridients,
 	                        @RequestParam String howToCook,
-	                        Map<String, Object> model)
-	{
+	                        Map<String, Object> model) {
 		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
 		
 		recipeRepo.save(recipe);
-
+		
 		Iterable<Recipe> recipies = recipeRepo.findAll();
-
+		
 		model.put("recipies", recipies);
-
+		
 		return "redirect:/";
 	}
 	
 	@PostMapping("filter")
-	public String filter(@RequestParam String filter, Map<String, Object> model)
-	{
+	public String filter(@RequestParam String filter, Map<String, Object> model) {
 		List<Recipe> recipies = recipeRepo.findByIngridientsIgnoreCaseContaining(filter);
 		
 		model.put("recipies", recipies);

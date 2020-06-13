@@ -5,7 +5,6 @@ import refrigerationApp.entities.Recipe;
 
 import java.util.List;
 
-public interface RecipeRepo extends CrudRepository<Recipe, Long>
-{
+public interface RecipeRepo extends CrudRepository<Recipe, Long> {
 	List<Recipe> findByIngridientsIgnoreCaseContaining(String form);
 }
