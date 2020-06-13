@@ -44,6 +44,10 @@ body {
     outline: none;
 }
 
+.form__input:focus {
+    border-color: #59bf4d;
+}
+
 .btn {
     font-size: 16px;
     color: #fff;
@@ -51,6 +55,11 @@ body {
     border: 2px solid #75c96c;
     padding: 7px 25px;
     cursor: pointer;
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #59bf4d;
 }
 
 .section-title {
