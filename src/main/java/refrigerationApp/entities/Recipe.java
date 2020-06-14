@@ -8,30 +8,30 @@ public class Recipe {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private String id;
 	
 	@Column(name = "name_recipe")
 	private String nameRecipe;
 	
-	@Column(name = "ingridients")
-	private String ingridients;
+	@Column(name = "ingredients")
+	private String ingredients;
 	
 	@Column(name = "how_to_cook")
 	private String howToCook;
 	
-	public Recipe(String nameRecipe, String ingridients, String howToCook) {
+	public Recipe(String nameRecipe, String ingredients, String howToCook) {
 		this.nameRecipe  = nameRecipe;
-		this.ingridients = ingridients;
+		this.ingredients = ingredients;
 		this.howToCook   = howToCook;
 	}
 	
 	public Recipe() {}
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -43,12 +43,12 @@ public class Recipe {
 		this.nameRecipe = nameRecipe;
 	}
 	
-	public String getIngridients() {
-		return ingridients;
+	public String getIngredients() {
+		return ingredients;
 	}
 	
-	public void setIngridients(String form) {
-		this.ingridients = form;
+	public void setIngredients(String form) {
+		this.ingredients = form;
 	}
 	
 	public String getHowToCook() {

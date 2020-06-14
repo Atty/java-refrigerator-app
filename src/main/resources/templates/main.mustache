@@ -39,9 +39,6 @@
         </form>
 
         <form class="form" method="post" action="filter">
-            <div class="form__inputs">
-                <input class="form__input" type="text" name="filter" placeholder="Что у вас есть?">
-            </div>
             <button class="btn" type="submit">Найти рецепты</button>
         </form>
 
@@ -51,7 +48,7 @@
             {{#recipies}}
                 <div class="recipies__list-item">
                     <p><b>{{id}}. {{nameRecipe}}</b></p>
-                    <p><b>Ингридиенты:</b> {{ingridients}}</p>
+                    <p><b>Ингридиенты:</b> {{ingredients}}</p>
                     <p><b>Как готовить:</b> {{howToCook}}</p>
                 </div>
             {{/recipies}}
