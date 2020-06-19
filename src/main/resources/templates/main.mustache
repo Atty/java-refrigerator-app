@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Генератор рецептов</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
@@ -9,7 +9,7 @@
     <main class="main container">
         <h1 class="main__title">Генерирование рецептов из ваших продуктов</h1>
 
-        <form class="form" method="post" action="addProduct" class="form">
+        <form class="form" method="post" action="addProduct">
             <div class="form__inputs">
                 <input class="form__input" type="text" name="title" placeholder="Введите продукт">
             </div>
@@ -26,21 +26,6 @@
                 {{/products}}
             </ul>
         </section>
-
-
-        <form class="form" method="post" action="addRecipe">
-            <div class="form__inputs">
-                <input class="form__input" type="text" name="nameRecipe" placeholder="Название рецепта"/>
-                <input class="form__input" type="text" name="ingridients" placeholder="Ингридиенты"/>
-                <input class="form__input" type="text" name="howToCook" placeholder="Описание приготовления"/>
-            </div>
-
-            <button class="btn" type="submit">Занести в базу</button>
-        </form>
-
-        <form class="form" method="post" action="filter">
-            <button class="btn" type="submit">Найти рецепты</button>
-        </form>
 
         <section class="recipies">
             <h3 class="section-title">Список рецептов:</h3>

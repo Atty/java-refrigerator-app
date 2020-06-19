@@ -25,7 +25,7 @@ public class SearchRepo {
 		}
 	}
 	
-	public static void searchPositionOfRecipe() throws SQLException {
+	public static void searchPositionOfRecipeHardSearch() throws SQLException {
 		postgresDBToArray();
 		for (Product product : ProductStore.getProducts()) {
 			String productTitle = product.getProductTitle();
@@ -38,7 +38,7 @@ public class SearchRepo {
 				idList.set(i, "-1");
 			}
 		}
-		idList.removeIf(n -> n.equals(-1));
+		idList.removeIf(n -> n.equals("-1"));
 	}
 	
 	public static ArrayList<String> getIdList() {
