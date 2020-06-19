@@ -10,7 +10,7 @@ public class Product {
 	
 	public Product(String title) {
 		this.productId    = counter++;
-		this.productTitle = title;
+		this.productTitle = title.toLowerCase().trim();
 	}
 	
 	public String getProductTitle() {

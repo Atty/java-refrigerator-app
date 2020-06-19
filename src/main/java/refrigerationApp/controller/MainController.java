@@ -43,7 +43,7 @@ public class MainController {
 	@PostMapping("addProduct")
 	public String addProduct(@RequestParam String title, Map<String, Object> model) {
 		if (!title.isEmpty() && title.length() != 0) {
-			Product product = new Product(title.toLowerCase());
+			Product product = new Product(title);
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
 		}
