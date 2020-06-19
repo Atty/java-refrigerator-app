@@ -28,7 +28,7 @@ public class SearchRepo {
 	public static void searchPositionOfRecipeHardSearch() throws SQLException {
 		postgresDBToArray();
 		for (Product product : ProductStore.getProducts()) {
-			String productTitle = product.getProductTitle().toLowerCase().trim();
+			String productTitle = product.getProductTitle();
 			for (int i = 0; i < ingredientsList.size(); i++) {
 				ingredientsList.set(i, ingredientsList.get(i).replace(productTitle, ""));
 			}

@@ -22,7 +22,7 @@
 
             <ul class="products__list js-list">
                 {{#products}}
-                    <li class="products__list-item"><a href="/deleteProduct/{{productId}}">{{productTitle}}</a></li>
+                    <li class="products__item">{{productTitle}}<a class="products__item-delete" href="/deleteProduct/{{productId}}"></a></li>
                 {{/products}}
             </ul>
         </section>
@@ -31,7 +31,7 @@
             <h3 class="section-title">Список рецептов:</h3>
             <div class="recipies__list js-list">
             {{#recipies}}
-                <div class="recipies__list-item">
+                <div class="recipies__item">
                     <p><b>{{id}}. {{nameRecipe}}</b></p>
                     <p><b>Ингридиенты:</b> {{ingredients}}</p>
                     <p><b>Как готовить:</b> {{howToCook}}</p>
