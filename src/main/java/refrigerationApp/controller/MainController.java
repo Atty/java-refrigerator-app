@@ -23,12 +23,12 @@ public class MainController {
 	@Autowired
 	private RecipeRepo recipeRepo;
 	
-	@GetMapping
+	@GetMapping("/")
 	public String main(Map<String, Object> model) throws SQLException {
-		SearchRepo.searchPositionOfRecipe();
+		SearchRepo.searchPositionOfRecipeHardSearch();
 		Iterable<Recipe> recipiesAll    = recipeRepo.findAll();
 		Iterable<Recipe> recipiesFilter = recipeRepo.findByIdIn(SearchRepo.getIdList());
-		if (recipiesFilter.equals(Collections.emptyList())) {
+		if (ProductStore.getProducts().equals(Collections.emptyList())) {
 			model.put("recipies", recipiesAll);
 		}
 		else {
@@ -42,7 +42,7 @@ public class MainController {
 	
 	@PostMapping("addProduct")
 	public String addProduct(@RequestParam String title, Map<String, Object> model) {
-		if (!title.isEmpty() && title.length() != 0) {
+		if (!title.isEmpty()) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
@@ -51,7 +51,7 @@ public class MainController {
 		return "redirect:/";
 	}
 	
-	@GetMapping(value = {"/deleteProduct/{productId}"})
+	@GetMapping("/deleteProduct/{productId}")
 	public String deleteProductById(@PathVariable int productId, Map<String, Object> model) {
 		Iterator<Product> productsList = ProductStore.getProducts().iterator();
 		while (productsList.hasNext()) {
@@ -60,28 +60,6 @@ public class MainController {
 				break;
 			}
 		}
-		
-		return "redirect:/";
-	}
-	
-	@PostMapping("addRecipe")
-	public String addRecipe(@RequestParam String nameRecipe,
-	                        @RequestParam String ingridients,
-	                        @RequestParam String howToCook,
-	                        Map<String, Object> model) {
-		Recipe recipe = new Recipe(nameRecipe, ingridients, howToCook);
-		recipeRepo.save(recipe);
-		Iterable<Recipe> recipies = recipeRepo.findAll();
-		model.put("recipies", recipies);
-		
-		return "redirect:/";
-	}
-	
-	@PostMapping("filter")
-	public String filter(Map<String, Object> model) throws SQLException {
-		SearchRepo.searchPositionOfRecipe();
-		Iterable<Recipe> recipies = recipeRepo.findByIdIn(SearchRepo.getIdList());
-		model.put("recipies", recipies);
 		
 		return "redirect:/";
 	}
