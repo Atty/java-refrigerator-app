@@ -22,23 +22,37 @@ public class MainController {
 	
 	@Autowired
 	private RecipeRepo recipeRepo;
+	private boolean    filter;
 	
 	@GetMapping("/")
 	public String main(Map<String, Object> model) throws SQLException {
-		SearchRepo.searchPositionOfRecipeHardSearch();
-		Iterable<Recipe> recipiesAll    = recipeRepo.findAll();
-		Iterable<Recipe> recipiesFilter = recipeRepo.findByIdIn(SearchRepo.getIdList());
+		SearchRepo.searchPositionOfRecipeHardFilter();
+		SearchRepo.searchPositionOfRecipeSoftFilter();
+		Iterable<Recipe> recipiesAll        = recipeRepo.findAll();
+		Iterable<Recipe> recipiesHardFilter = recipeRepo.findByIdIn(SearchRepo.getIdList());
+		Iterable<Recipe> recipiesSoftFilter = recipeRepo.findByIdIn(SearchRepo.getCopyOfIdList());
 		if (ProductStore.getProducts().equals(Collections.emptyList())) {
 			model.put("recipies", recipiesAll);
 		}
 		else {
-			model.put("recipies", recipiesFilter);
+			if (filter) {
+				model.put("recipies", recipiesSoftFilter);
+			}
+			else {
+				model.put("recipies", recipiesHardFilter);
+			}
 		}
 		model.put("products", ProductStore.getProducts());
 		
 		return "main";
 	}
 	
+	@PostMapping("softFilter")
+	public String softFilter(@RequestParam(defaultValue = "false") boolean softFilter, Map<String, Object> model) {
+		filter = softFilter;
+		
+		return "redirect:/";
+	}
 	
 	@PostMapping("addProduct")
 	public String addProduct(@RequestParam String title, Map<String, Object> model) {
