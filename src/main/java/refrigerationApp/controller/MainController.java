@@ -26,20 +26,20 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(Map<String, Object> model) throws SQLException {
-		SearchRepo.searchPositionOfRecipeHardFilter();
-		SearchRepo.searchPositionOfRecipeSoftFilter();
 		Iterable<Recipe> recipiesAll        = recipeRepo.findAll();
-		Iterable<Recipe> recipiesHardFilter = recipeRepo.findByIdIn(SearchRepo.getIdList());
-		Iterable<Recipe> recipiesSoftFilter = recipeRepo.findByIdIn(SearchRepo.getCopyOfIdList());
+		Iterable<Recipe> recipiesHardFilter = recipeRepo.findByIdIn(SearchRepo.getPositionRecipeForHardFilter());
+		Iterable<Recipe> recipiesSoftFilter = recipeRepo.findByIdIn(SearchRepo.getPositionRecipeForSoftFilter());
 		if (ProductStore.getProducts().equals(Collections.emptyList())) {
 			model.put("recipies", recipiesAll);
 		}
 		else {
 			if (filter) {
 				model.put("recipies", recipiesSoftFilter);
+				model.put("checked", "checked");
 			}
 			else {
 				model.put("recipies", recipiesHardFilter);
+				model.put("checked", "unchecked");
 			}
 		}
 		model.put("products", ProductStore.getProducts());
