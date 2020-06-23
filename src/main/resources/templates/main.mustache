@@ -18,7 +18,7 @@
         </form>
 
         <form action="/softFilter" method="post">
-            <input type="checkbox" name="softFilter"/>
+            <input type="checkbox" name="softFilter" autocomplete="off" {{#checked}}{{checked}}{{/checked}}/>
             <label for="softFilter">
                 Мягкий фильтр
             </label>
