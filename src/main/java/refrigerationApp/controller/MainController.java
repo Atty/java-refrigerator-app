@@ -56,7 +56,7 @@ public class MainController {
 	
 	@PostMapping("addProduct")
 	public String addProduct(@RequestParam String title, Map<String, Object> model) {
-		if (!title.isEmpty()) {
+		if (!title.isEmpty() && title.matches("[а-я]+")) {
 			Product product = new Product(title.toLowerCase());
 			ProductStore.getProducts().add(product);
 			model.put("products", ProductStore.getProducts());
