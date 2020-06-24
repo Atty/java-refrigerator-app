@@ -19,12 +19,6 @@ public class Recipe {
 	@Column(name = "how_to_cook")
 	private String howToCook;
 	
-	public Recipe(String nameRecipe, String ingredients, String howToCook) {
-		this.nameRecipe  = nameRecipe;
-		this.ingredients = ingredients;
-		this.howToCook   = howToCook;
-	}
-	
 	public Recipe() {}
 	
 	public String getId() {
